@@ -1,0 +1,6 @@
+/Debug
+/Release
+*.dep
+*.stp
+*.stw
+*.wed
