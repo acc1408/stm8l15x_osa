@@ -25,8 +25,12 @@
   *
   ******************************************************************************
   */
-
+/* Define to prevent recursive inclusion -------------------------------------*/
+#ifndef __STM8L15x_IT_C
+#define __STM8L15x_IT_C
 /* Includes ------------------------------------------------------------------*/
+
+#include "stm8l15x.h"
 #include "stm8l15x_it.h"
 #include "stm8l15x_conf.h"
 
@@ -533,3 +537,4 @@ INTERRUPT_HANDLER(I2C1_SPI2_IRQHandler,29)
   */ 
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif
