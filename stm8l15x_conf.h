@@ -33,7 +33,7 @@
 #include "stm8l15x.h"
 
 /* Uncomment the line below to enable peripheral header file inclusion */
-//#include "osa.h"
+// #include "osa.h"	/* Включение RTOS OSA*/
 // #include "inc/stm8l15x_adc.h"
 // #include "inc/stm8l15x_aes.h"
 // #include "inc/stm8l15x_beep.h"
