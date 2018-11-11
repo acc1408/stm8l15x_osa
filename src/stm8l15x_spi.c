@@ -75,7 +75,8 @@
   *
   ******************************************************************************
   */ 
-	
+#ifndef __STM8L15x_SPI_C
+#define __STM8L15x_SPI_C
 /* Includes ------------------------------------------------------------------*/
 #include "inc/stm8l15x_spi.h"
 
@@ -792,3 +793,4 @@ void SPI_ClearITPendingBit(SPI_TypeDef* SPIx, SPI_IT_TypeDef SPI_IT)
   */ 
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif

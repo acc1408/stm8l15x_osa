@@ -79,6 +79,8 @@
   *
   ******************************************************************************
   */
+#ifndef __STM8L15x_LCD_C
+#define __STM8L15x_LCD_C
 
 /* Includes ------------------------------------------------------------------*/
 #include "inc/stm8l15x_lcd.h"
@@ -630,3 +632,4 @@ void LCD_ClearITPendingBit(void)
   */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif

@@ -36,7 +36,8 @@
   *
   ******************************************************************************
   */
-
+#ifndef __STM8L15x_IRTIM_C
+#define __STM8L15x_IRTIM_C
 
 /* Includes ------------------------------------------------------------------*/
 #include "inc/stm8l15x_irtim.h"
@@ -197,3 +198,4 @@ FunctionalState IRTIM_GetHighSinkODStatus(void)
   */
   
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif

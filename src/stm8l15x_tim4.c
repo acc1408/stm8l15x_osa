@@ -68,7 +68,9 @@
   *
   ******************************************************************************
   */
-
+/* Define to prevent recursive inclusion -------------------------------------*/
+#ifndef __STM8L15x_TIM4_C
+#define __STM8L15x_TIM4_C
 
 /* Includes ------------------------------------------------------------------*/
 #include "inc/stm8l15x_tim4.h"
@@ -760,3 +762,4 @@ void TIM4_SelectMasterSlaveMode(FunctionalState NewState)
   */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif

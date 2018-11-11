@@ -72,7 +72,9 @@
   *
   ******************************************************************************
   */
-
+/* Define to prevent recursive inclusion -------------------------------------*/
+#ifndef __STM8L15x_WWDG_C
+#define __STM8L15x_WWDG_C
 /* Includes ------------------------------------------------------------------*/
 #include "inc/stm8l15x_wwdg.h"
 
@@ -245,3 +247,4 @@ void WWDG_SWReset(void)
   */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif

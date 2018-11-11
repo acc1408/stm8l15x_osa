@@ -34,16 +34,16 @@
 
 /* Uncomment the line below to enable peripheral header file inclusion */
 
-#include "inc/stm8l15x_adc.h"
+// #include "inc/stm8l15x_adc.h"
 // #include "inc/stm8l15x_aes.h"
 // #include "inc/stm8l15x_beep.h"
-#include "inc/stm8l15x_clk.h"
+ #include "inc/stm8l15x_clk.h"
 // #include "inc/stm8l15x_comp.h"
 // #include "inc/stm8l15x_dac.h"
 // #include "inc/stm8l15x_dma.h"
 // #include "inc/stm8l15x_exti.h"
 // #include "inc/stm8l15x_flash.h"
- #include "inc/stm8l15x_gpio.h"
+// #include "inc/stm8l15x_gpio.h"
 // #include "inc/stm8l15x_i2c.h"
 // #include "inc/stm8l15x_irtim.h"
 // #include "inc/stm8l15x_itc.h"
@@ -59,7 +59,7 @@
 // #include "inc/stm8l15x_tim3.h"
 // #include "inc/stm8l15x_tim4.h"
 // #include "inc/stm8l15x_tim5.h"
-#include "inc/stm8l15x_usart.h"
+// #include "inc/stm8l15x_usart.h"
 // #include "inc/stm8l15x_wfe.h"
 // #include "inc/stm8l15x_wwdg.h"
 

@@ -83,7 +83,8 @@
   *
   ******************************************************************************
   */
-
+#ifndef __STM8L15x_IWDG_C
+#define __STM8L15x_IWDG_C
 /* Includes ------------------------------------------------------------------*/
 #include "inc/stm8l15x_iwdg.h"
 
@@ -218,3 +219,4 @@ void IWDG_Enable(void)
   */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif

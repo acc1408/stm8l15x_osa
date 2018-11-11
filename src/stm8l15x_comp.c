@@ -68,7 +68,8 @@
   *
   ******************************************************************************
   */
-
+#ifndef __STM8L15x_COMP_C
+#define __STM8L15x_COMP_C
 /* Includes ------------------------------------------------------------------*/
 #include "inc/stm8l15x_comp.h"
 
@@ -726,3 +727,4 @@ void COMP_ClearITPendingBit(COMP_Selection_TypeDef COMP_Selection)
   */ 
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif

@@ -51,7 +51,8 @@
   *
   ******************************************************************************
   */
-
+#ifndef __STM8L15x_GPIO_C
+#define __STM8L15x_GPIO_C
 /* Includes ------------------------------------------------------------------*/
 #include "inc/stm8l15x_gpio.h"
 
@@ -408,3 +409,4 @@ BitStatus GPIO_ReadOutputDataBit(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin)
   */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif

@@ -53,7 +53,9 @@
   *
   ******************************************************************************
   */
-
+/* Define to prevent recursive inclusion -------------------------------------*/
+#ifndef __STM8L15x_WFE_C
+#define __STM8L15x_WFE_C
 /* Includes ------------------------------------------------------------------*/
 #include "inc/stm8l15x_wfe.h"
 
@@ -346,3 +348,4 @@ FunctionalState WFE_GetWakeUpSourceEventStatus(WFE_Source_TypeDef WFE_Source)
   */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif

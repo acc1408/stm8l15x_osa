@@ -56,7 +56,8 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-
+#ifndef __STM8L15x_CLK_C
+#define __STM8L15x_CLK_C
 #include "inc/stm8l15x_clk.h"
 
 /** @addtogroup STM8L15x_StdPeriph_Driver
@@ -1121,3 +1122,4 @@ void CLK_ClearITPendingBit(CLK_IT_TypeDef CLK_IT)
   */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif

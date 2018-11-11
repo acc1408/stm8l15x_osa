@@ -76,7 +76,8 @@
   *
   ******************************************************************************
   */
-
+#ifndef __STM8L15x_I2C_C
+#define __STM8L15x_I2C_C
 /* Includes ------------------------------------------------------------------*/
 #include "inc/stm8l15x_i2c.h"
 #include "inc/stm8l15x_clk.h"
@@ -1367,3 +1368,4 @@ void I2C_ClearITPendingBit(I2C_TypeDef* I2Cx, I2C_IT_TypeDef I2C_IT)
   */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif

@@ -26,6 +26,8 @@
   *
   ******************************************************************************
   */
+#ifndef __STM8L15x_ITC_C
+#define __STM8L15x_ITC_C
 
 /* Includes ------------------------------------------------------------------*/
 #include "inc/stm8l15x_itc.h"
@@ -391,3 +393,4 @@ void ITC_SetSoftwarePriority(IRQn_TypeDef IRQn, ITC_PriorityLevel_TypeDef ITC_Pr
   */
   
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif

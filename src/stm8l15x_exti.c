@@ -47,7 +47,8 @@
   *
   ******************************************************************************
   */
-
+#ifndef __STM8L15x_EXTI_C
+#define __STM8L15x_EXTI_C
 /* Includes ------------------------------------------------------------------*/
 #include "inc/stm8l15x_exti.h"
 
@@ -557,3 +558,4 @@ void EXTI_ClearITPendingBit(EXTI_IT_TypeDef EXTI_IT)
   */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif

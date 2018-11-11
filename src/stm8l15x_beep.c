@@ -45,7 +45,8 @@
   *
   ******************************************************************************
   */
-
+#ifndef __STM8L15x_BEEP_C
+#define __STM8L15x_BEEP_C
 /* Includes ------------------------------------------------------------------*/
 #include "inc/stm8l15x_beep.h"
 
@@ -245,3 +246,4 @@ void BEEP_LSICalibrationConfig(uint32_t LSIFreqHz)
   */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif

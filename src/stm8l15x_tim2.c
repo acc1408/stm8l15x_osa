@@ -99,6 +99,8 @@
   *
   ******************************************************************************
   */
+#ifndef __STM8L15x_TIM2_C
+#define __STM8L15x_TIM2_C
 
 /* Includes ------------------------------------------------------------------*/
 #include "inc/stm8l15x_TIM2.h"
@@ -2152,3 +2154,4 @@ static void TIM2_TI2_Config(TIM2_ICPolarity_TypeDef TIM2_ICPolarity,
   */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif

@@ -139,7 +139,8 @@
   *
   ******************************************************************************
   */    
-
+#ifndef __STM8L15x_RTC_C
+#define __STM8L15x_RTC_C
 /* Includes ------------------------------------------------------------------*/
 #include "inc/stm8l15x_rtc.h"
 
@@ -2243,3 +2244,4 @@ static uint8_t Bcd2ToByte(uint8_t Value)
   */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif

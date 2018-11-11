@@ -29,6 +29,8 @@
   *
   ******************************************************************************
   */
+#ifndef __STM8L15x_PWR_C
+#define __STM8L15x_PWR_C
 
 /* Includes ------------------------------------------------------------------*/
 #include "inc/stm8l15x_pwr.h"
@@ -356,3 +358,4 @@ void PWR_PVDClearITPendingBit(void)
   */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif

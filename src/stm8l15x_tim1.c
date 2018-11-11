@@ -102,7 +102,8 @@
   *
   ******************************************************************************
   */
-
+#ifndef __STM8L15x_TIM1_C
+#define __STM8L15x_TIM1_C
 /* Includes ------------------------------------------------------------------*/
 #include "inc/stm8l15x_tim1.h"
 
@@ -2772,3 +2773,4 @@ static void TI4_Config(uint8_t TIM1_ICPolarity, uint8_t TIM1_ICSelection, uint8_
   */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif

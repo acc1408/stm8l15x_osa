@@ -98,7 +98,8 @@
   *
   ******************************************************************************
   */
-
+#ifndef __STM8L15x_DAC_C
+#define __STM8L15x_DAC_C
 /* Includes ------------------------------------------------------------------*/
 #include "inc/stm8l15x_dac.h"
 
@@ -837,3 +838,4 @@ void DAC_ClearITPendingBit(DAC_Channel_TypeDef DAC_Channel, DAC_IT_TypeDef DAC_I
   */ 
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif

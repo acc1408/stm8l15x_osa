@@ -48,7 +48,8 @@
   *
   ******************************************************************************  
   */
-
+#ifndef __STM8L15x_RST_C
+#define __STM8L15x_RST_C
 /* Includes ------------------------------------------------------------------*/
 
 #include "inc/stm8l15x_rst.h"
@@ -169,3 +170,4 @@ void RST_GPOutputEnable(void)
   */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif

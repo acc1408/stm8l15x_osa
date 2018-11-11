@@ -54,7 +54,8 @@
   *
   ******************************************************************************
   */
-
+#ifndef __STM8L15x_SYSCFG_C
+#define __STM8L15x_SYSCFG_C
 /* Includes ------------------------------------------------------------------*/
 #include "inc/stm8l15x_syscfg.h"
 
@@ -505,3 +506,4 @@ void SYSCFG_REMAPDMAChannelConfig(REMAP_DMAChannel_TypeDef REMAP_DMAChannel)
   */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif

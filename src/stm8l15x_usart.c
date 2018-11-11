@@ -69,7 +69,9 @@
   *
   ******************************************************************************
   */ 
-
+/* Define to prevent recursive inclusion -------------------------------------*/
+#ifndef __STM8L15x_USART_C
+#define __STM8L15x_USART_C
 /* Includes ------------------------------------------------------------------*/
 #include "inc/stm8l15x_usart.h"
 
@@ -1206,3 +1208,4 @@ void USART_ClearITPendingBit(USART_TypeDef* USARTx, USART_IT_TypeDef USART_IT)
   */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif

@@ -81,7 +81,8 @@
   *
   ******************************************************************************
   */ 
-
+#ifndef __STM8L15x_DMA_C
+ #define __STM8L15x_DMA_C
 /* Includes ------------------------------------------------------------------*/
 #include "inc/stm8l15x_dma.h"
 
@@ -751,3 +752,4 @@ void DMA_ClearITPendingBit(DMA_IT_TypeDef DMA_IT)
   */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif

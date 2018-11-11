@@ -82,6 +82,8 @@
   *
   ******************************************************************************
   */ 
+#ifndef __STM8L15x_ADC_C
+#define __STM8L15x_ADC_C
 
 /* Includes ------------------------------------------------------------------*/
 #include "inc/stm8l15x_adc.h"
@@ -986,3 +988,4 @@ void ADC_ClearITPendingBit(ADC_TypeDef* ADCx,
   */ 
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif

@@ -99,7 +99,9 @@
   *
   ******************************************************************************
   */
-
+/* Define to prevent recursive inclusion -------------------------------------*/
+#ifndef __STM8L15x_TIM3_C
+#define __STM8L15x_TIM3_C
 /* Includes ------------------------------------------------------------------*/
 #include "inc/stm8l15x_TIM3.h"
 
@@ -2152,3 +2154,4 @@ static void TIM3_TI2_Config(TIM3_ICPolarity_TypeDef TIM3_ICPolarity,
   */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif

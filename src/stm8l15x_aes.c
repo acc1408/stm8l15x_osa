@@ -50,6 +50,8 @@
   *
   ******************************************************************************
   */
+#ifndef __STM8L15x_AES_C
+#define __STM8L15x_AES_C
 
 /* Includes ------------------------------------------------------------------*/
 #include "inc/stm8l15x_aes.h"
@@ -486,3 +488,4 @@ void AES_ClearITPendingBit(AES_IT_TypeDef AES_IT)
   */ 
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif
