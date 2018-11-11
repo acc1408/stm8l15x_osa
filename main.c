@@ -27,7 +27,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm8l15x.h"
-//#include "osa.h"
+
 
 /** @addtogroup STM8L15x_StdPeriph_Template
   * @{

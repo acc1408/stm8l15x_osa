@@ -34,6 +34,10 @@
 #include "stm8l15x_it.h"
 #include "stm8l15x_conf.h"
 
+#ifdef  __OSA__
+#include "osa.c"
+#endif
+
 #ifdef  __STM8L15x_ADC_H
 #include "src/stm8l15x_adc.c"
 #endif
