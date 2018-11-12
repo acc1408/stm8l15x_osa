@@ -48,10 +48,17 @@
   */
 void main(void)
 {
-  /* Infinite loop */
+#ifdef  __OSA__
+	OS_Init();  // Инициализация RTOS OSA
+	OS_EI();   // Разрешить все прерывания
+	OS_Run(); // Запуск ядра RTOS OSA
+#elseif
+	/* Infinite loop */
   while (1)
   {
-  }
+  
+	}
+#endif
 }
 
 #ifdef  USE_FULL_ASSERT
