@@ -52,7 +52,7 @@ void main(void)
 	OS_Init();  // Инициализация RTOS OSA
 	OS_EI();   // Разрешить все прерывания
 	OS_Run(); // Запуск ядра RTOS OSA
-#elseif
+#else
 	/* Infinite loop */
   while (1)
   {
