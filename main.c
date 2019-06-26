@@ -27,7 +27,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm8l15x.h"
-
+#include "stm8l15x_it.c"
 
 /** @addtogroup STM8L15x_StdPeriph_Template
   * @{
@@ -51,6 +51,7 @@ void main(void)
 #ifdef  __OSA__
 	OS_Init();  // Инициализация RTOS OSA
 	OS_EI();   // Разрешить все прерывания
+	//OS_Task_Create(7, Task1); // создаем задачу
 	OS_Run(); // Запуск ядра RTOS OSA
 #else
 	/* Infinite loop */
