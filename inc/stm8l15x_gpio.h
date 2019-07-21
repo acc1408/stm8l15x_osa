@@ -152,15 +152,15 @@ typedef enum
 /* Exported functions ------------------------------------------------------- */
 /* Initialization and Configuration *******************************************/
 void GPIO_DeInit(GPIO_TypeDef* GPIOx);
-void GPIO_Init(GPIO_TypeDef* GPIOx, uint8_t GPIO_Pin, GPIO_Mode_TypeDef GPIO_Mode);
-void GPIO_ExternalPullUpConfig(GPIO_TypeDef* GPIOx, uint8_t GPIO_Pin, FunctionalState NewState);
+void GPIO_Init(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin, GPIO_Mode_TypeDef GPIO_Mode);
+void GPIO_ExternalPullUpConfig(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin, FunctionalState NewState);
 
 /* GPIO Read and Write ********************************************************/
 void GPIO_Write(GPIO_TypeDef* GPIOx, uint8_t GPIO_PortVal);
 void GPIO_WriteBit(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin, BitAction GPIO_BitVal);
-void GPIO_SetBits(GPIO_TypeDef* GPIOx, uint8_t GPIO_Pin);
-void GPIO_ResetBits(GPIO_TypeDef* GPIOx, uint8_t GPIO_Pin);
-void GPIO_ToggleBits(GPIO_TypeDef* GPIOx, uint8_t GPIO_Pin);
+void GPIO_SetBits(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin);
+void GPIO_ResetBits(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin);
+void GPIO_ToggleBits(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin);
 uint8_t GPIO_ReadInputData(GPIO_TypeDef* GPIOx);
 uint8_t GPIO_ReadOutputData(GPIO_TypeDef* GPIOx);
 BitStatus GPIO_ReadInputDataBit(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin);

@@ -131,7 +131,7 @@ void GPIO_DeInit(GPIO_TypeDef* GPIOx)
   * @retval None
   */
 
-void GPIO_Init(GPIO_TypeDef* GPIOx, uint8_t GPIO_Pin, GPIO_Mode_TypeDef GPIO_Mode)
+void GPIO_Init(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin, GPIO_Mode_TypeDef GPIO_Mode)
 {
   /*----------------------*/
   /* Check the parameters */
@@ -207,7 +207,7 @@ void GPIO_Init(GPIO_TypeDef* GPIOx, uint8_t GPIO_Pin, GPIO_Mode_TypeDef GPIO_Mod
   *           Can be ENABLE or DISABLE  
   * @retval None
   */
-void GPIO_ExternalPullUpConfig(GPIO_TypeDef* GPIOx, uint8_t GPIO_Pin, FunctionalState NewState)
+void GPIO_ExternalPullUpConfig(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin, FunctionalState NewState)
 {
   /* Check the parameters */
   assert_param(IS_GPIO_PIN(GPIO_Pin));
@@ -301,7 +301,7 @@ void GPIO_WriteBit(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin, BitAction GPI
   *            @arg GPIO_Pin_7: Pin 7   
   * @retval None
   */
-void GPIO_SetBits(GPIO_TypeDef* GPIOx, uint8_t GPIO_Pin)
+void GPIO_SetBits(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin)
 {
   GPIOx->ODR |= GPIO_Pin;
 }
@@ -322,7 +322,7 @@ void GPIO_SetBits(GPIO_TypeDef* GPIOx, uint8_t GPIO_Pin)
   *            @arg GPIO_Pin_7: Pin 7 
   * @retval None
   */
-void GPIO_ResetBits(GPIO_TypeDef* GPIOx, uint8_t GPIO_Pin)
+void GPIO_ResetBits(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin)
 {
   GPIOx->ODR &= (uint8_t)(~GPIO_Pin);
 }
@@ -334,9 +334,9 @@ void GPIO_ResetBits(GPIO_TypeDef* GPIOx, uint8_t GPIO_Pin)
   * @param  GPIO_Pin : Specifies the pins to be toggled.
   * @retval None
   */
-void GPIO_ToggleBits(GPIO_TypeDef* GPIOx, uint8_t GPIO_Pin)
+void GPIO_ToggleBits(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin)
 {
-  GPIOx->ODR ^= GPIO_Pin;
+  GPIOx->ODR ^= (uint8_t) GPIO_Pin;
 }
 
 /**
