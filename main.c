@@ -135,8 +135,63 @@ uint16_t nmb=0;
 
 i2cStatus_t res;
 
+typedef struct
+{
+	uint8_t* Map;
+	uint8_t sizeMap;
+	uint8_t SlaveCnt;
+} I2CSlave_t;
+I2CSlave_t I2CSlave;
 
-
+void I2C_InitSlaveIT(uint8_t address,uint8_t genCall, void* Map, uint8_t sizeMap, void(*HandlerSlaveI2C)(void))
+{
+	I2CSlave.Map=(uint8_t*)Map;
+	I2CSlave.sizeMap=sizeMap;
+	I2CSlave.SlaveCnt=0;
+	I2C->gencall=genCall;
+	I2C->add71=address;
+	I2C->ack=1;
+	I2C->iterren=1;
+	I2C->itevten=1;
+	I2C->itbufen=1;
+	I2C->pe=1;
+}
+//uint8_t SlaveCnt=0;
+void I2C_SlaveIT(void)
+{
+	i2cStatusReg_t SR;
+	I2CSlave.SlaveCnt%=I2CSlave.sizeMap;
+	SR.SR1=I2C->SR1;
+	SR.SR3=I2C->SR3;
+	SR.SR2=I2C->SR2;
+	if (SR.SR2)
+		{
+			return;
+		}
+	if (SR.msl)
+		{
+			// master
+		}
+		else
+		{
+			// slave
+			if (SR.addr)
+			{
+				return;
+			}
+			if (SR.rxne)
+			{
+				I2CSlave.Map[I2CSlave.SlaveCnt++]=I2C->DR;
+				return;
+			}
+			if (SR.rxne)
+			{
+				I2CSlave.Map[I2CSlave.SlaveCnt++]=I2C->DR;
+				return;
+			}
+			
+		}
+}
 
 
 void main(void)
@@ -181,8 +236,10 @@ void main(void)
 	GPIO_Init(GPIOE, GPIO_PIN_5, GPIO_MODE_OUT_OD_LOW_FAST);
 	//printf("Check cmdline\r\n");
 	
-	I2C_Init_7bit(100000);
+	//I2C_Init_7bit(100000);
 	//I2C_MasterSend(0x57, a, 1);
+	
+	
 	while (1)
   {
 		//cmdmainloop(); // обработка командной строки
@@ -191,10 +248,10 @@ void main(void)
 	//res=I2C_MasterReceive(0x68, &a[1],1);
 	//res=I2C_MasterSend(0x68, a, 2);
 	//	res=I2C_MasterSendPtrSendData(0x68, a, 1, &a[1],0);
-	res=I2C_MasterSendPtrReceiveData(0x68, a, 1, &a[1],0);
-	res=I2C_MasterSendPtrReceiveData(0x68, a, 1, &a[1],1);
-	res=I2C_MasterSendPtrReceiveData(0x68, a, 1, &a[1],2);
-	res=I2C_MasterSendPtrReceiveData(0x68, a, 1, &a[1],3);
+	//res=I2C_MasterSendPtrReceiveData(0x68, a, 1, &a[1],0);
+	//res=I2C_MasterSendPtrReceiveData(0x68, a, 1, &a[1],1);
+	//res=I2C_MasterSendPtrReceiveData(0x68, a, 1, &a[1],2);
+	//res=I2C_MasterSendPtrReceiveData(0x68, a, 1, &a[1],3);
 	nmb++;
 	//if (bl) 
 	GPIO_WriteReverse(GPIOE, GPIO_PIN_5);
