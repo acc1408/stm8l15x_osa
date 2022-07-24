@@ -46,6 +46,7 @@
   * @param  None
   * @retval None
   */
+uint8_t a[4]={0,0,0,0};
 void main(void)
 {
 #ifdef  __OSA__
@@ -55,8 +56,25 @@ void main(void)
 	OS_Run(); // Запуск ядра RTOS OSA
 #else
 	/* Infinite loop */
+	
+	GPIO_Init(GPIOA, GPIO_Pin_3|GPIO_Pin_4|GPIO_Pin_5, GPIO_Mode_In_PU_No_IT);
+	
+	GPIO_Init(GPIOE, GPIO_Pin_7,GPIO_Mode_In_PU_No_IT);
+	GPIO_Init(GPIOC, GPIO_Pin_7,GPIO_Mode_Out_PP_Low_Fast);
+	I2C_Init_7bit(100000);
   while (1)
   {
+		//I2C_MasterSend(0x68, a, 3);
+		I2C_MasterSendPtrReceiveData(0x68,a, 1, &a[1], 2);
+		if (GPIO_ReadInputDataBit(GPIOE, GPIO_Pin_4))
+			
+			{
+				GPIO_SetBits(GPIOC, GPIO_Pin_7);
+			}
+			else
+			{
+				GPIO_ResetBits(GPIOC, GPIO_Pin_7);
+			}
   
 	}
 #endif
