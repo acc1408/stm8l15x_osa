@@ -488,6 +488,10 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler,25)
     /* In order to detect unexpected events during development,
        it is recommended to set a breakpoint on the following instruction.
     */
+	#ifdef __OSA__ 
+	OS_Timer();
+	TIM4_ClearFlag(TIM4_FLAG_Update);
+	#endif
 }
 /**
   * @brief SPI1 Interrupt routine.

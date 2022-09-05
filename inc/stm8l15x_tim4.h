@@ -32,7 +32,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm8l15x.h"
-
+#include "inc/stm8l15x_clk.h" // драйвер тактирования
 /** @addtogroup STM8L15x_StdPeriph_Driver
   * @{
   */
@@ -359,6 +359,10 @@ void TIM4_SelectInputTrigger(TIM4_TRGSelection_TypeDef TIM4_InputTriggerSource);
 void TIM4_SelectOutputTrigger(TIM4_TRGOSource_TypeDef TIM4_TRGOSource);
 void TIM4_SelectSlaveMode(TIM4_SlaveMode_TypeDef TIM4_SlaveMode);
 void TIM4_SelectMasterSlaveMode(FunctionalState NewState);
+
+#ifdef __OSA__ 
+void TIM4_TimerOSA(uint16_t us);
+#endif
 
 #endif /* __STM8L15x_TIM4_H */
 

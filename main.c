@@ -34,13 +34,135 @@
   */
 
 /* Private typedef -----------------------------------------------------------*/
+// состояние установки
+typedef enum
+{
+	initDev=0,
+	workDev=1
+}stateDev_t;
+
+typedef enum
+{
+	operation=0,
+	load=1
+}motion_t;
+
+
+
+typedef struct
+{
+	// место под источники
+	uint8_t seat_1:1; // Пустое место
+	uint8_t seat_2:1;
+	uint8_t seat_3:1;
+	uint8_t seat_4:1;
+	// Состояния штанги
+	uint8_t levelHighest:1;
+	uint8_t levelHigh:1;
+	uint8_t levelLow:1;
+	uint8_t levelLowest:1;
+	// кнопки
+	
+	// настройка взаимодействия
+	//motion_t motion;
+	// состояние работы
+	//state_t state;
+	// 
+}repository_t;
 /* Private define ------------------------------------------------------------*/
+// Управление шаговым двигателем
+//Двигатель для управления вращения барабаном
+#define DIR_R GPIOA, GPIO_Pin_2
+#define EN_R 	GPIOA, GPIO_Pin_3
+#define CLK_R GPIOA, GPIO_Pin_4
+// Двигатель для управления штангой
+#define DIR_L GPIOA, GPIO_Pin_5
+#define EN_L 	GPIOA, GPIO_Pin_6
+#define CLK_L GPIOA, GPIO_Pin_7
+// Кнопки выбора барабана
+#define B_B0 GPIOD, GPIO_Pin_3
+#define B_B1 GPIOB, GPIO_Pin_0
+#define B_B2 GPIOB, GPIO_Pin_1
+#define B_B3 GPIOB, GPIO_Pin_2
+// Цанга кнопка
+#define B_CAN 	GPIOB, GPIO_Pin_3
+// Кнопки подъема/опускания
+#define B_UP 		GPIOB, GPIO_Pin_4
+#define B_DOWN 	GPIOB, GPIO_Pin_5
+// Кнопка ЛИМИТ ФОНА
+#define B_FON GPIOD, GPIO_Pin_0
+// Кнопка стоп двигателям
+#define STOP GPIOD, GPIO_Pin_1
+// Кнопка открытия двери
+#define B_DOOR_LIM GPIOE, GPIO_Pin_5
+// Режим работы работ или загрузка
+#define WRK GPIOD, GPIO_Pin_2
+// Опрос концевиков
+// концевики штанги
+#define L0_m GPIOD, GPIO_Pin_4
+#define L1_m GPIOD, GPIO_Pin_5
+#define L2_m GPIOD, GPIO_Pin_6
+#define L3_m GPIOD, GPIO_Pin_7
+//Концевики барабана
+#define S0_m GPIOC, GPIO_Pin_6
+#define S1_m GPIOC, GPIO_Pin_7
+#define S2_m GPIOE, GPIO_Pin_6
+#define S3_m GPIOE, GPIO_Pin_7
+//Включение концевика
+#define CAN GPIOE, GPIO_Pin_4
+//Включение замка двери
+#define DOOR GPIOE, GPIO_Pin_5
+
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
+stateDev_t DevStat=initDev;
 /* Private function prototypes -----------------------------------------------*/
 
 /* Private functions ---------------------------------------------------------*/
+#ifdef  __OSA__
+void Task1(void)
+{
+	uint8_t i,temp;
+	GPIO_Init(GPIOE, GPIO_Pin_7, GPIO_Mode_Out_PP_Low_Fast);
+	
+	while(1)
+	{
+		//BME280_StartStop(&bm, BME280_FORCED_MODE);
+		GPIO_ToggleBits(GPIOE, GPIO_Pin_7);
+		OS_Delay(200);
+	}
+}
 
+
+void PollingSignal(void)
+{
+	uint8_t i,temp;
+	GPIO_Init(GPIOD, GPIO_Pin_7, GPIO_Mode_Out_PP_Low_Fast);
+	
+	while(1)
+	{
+		//BME280_StartStop(&bm, BME280_FORCED_MODE);
+		GPIO_ToggleBits(GPIOE, GPIO_Pin_7);
+		OS_Delay(200);
+	}
+}
+
+
+void LedBlink(void)
+{
+	GPIO_Init(GPIOD, GPIO_Pin_7, GPIO_Mode_Out_PP_Low_Fast);
+	while(1)
+	{
+		//BME280_StartStop(&bm, BME280_FORCED_MODE);
+		GPIO_ToggleBits(GPIOE, GPIO_Pin_7);
+		OS_Delay(200);
+	}
+}
+
+#endif
+
+
+//#endif
 /**
   * @brief  Main program.
   * @param  None
@@ -51,30 +173,57 @@ void main(void)
 {
 #ifdef  __OSA__
 	OS_Init();  // Инициализация RTOS OSA
+	TIM4_TimerOSA(1000); //Настраиваем прерывание 500мкс
 	OS_EI();   // Разрешить все прерывания
-	//OS_Task_Create(7, Task1); // создаем задачу
+	OS_Task_Create(7, Task1); // создаем задачу
+	OS_Task_Create(7, PollingSignal); // создаем задачу
+	OS_Task_Create(7, LedBlink); // создаем задачу
+	
 	OS_Run(); // Запуск ядра RTOS OSA
 #else
 	/* Infinite loop */
+	CLK_SYSCLKDivConfig(CLK_SYSCLKDiv_1);
 	
-	GPIO_Init(GPIOA, GPIO_Pin_3|GPIO_Pin_4|GPIO_Pin_5, GPIO_Mode_In_PU_No_IT);
+	//GPIO_Init(GPIOA, GPIO_Pin_3|GPIO_Pin_4|GPIO_Pin_5, GPIO_Mode_In_PU_No_IT);
+	// Настройка Драйвера моторов
+	GPIO_Init(DIR_R, GPIO_Mode_Out_PP_High_Fast);
+	GPIO_Init(EN_R, GPIO_Mode_Out_PP_High_Fast);
+	GPIO_Init(CLK_R, GPIO_Mode_Out_PP_High_Fast);
+	GPIO_Init(DIR_L, GPIO_Mode_Out_PP_High_Fast);
+	GPIO_Init(EN_L, GPIO_Mode_Out_PP_High_Fast);
+	GPIO_Init(CLK_L, GPIO_Mode_Out_PP_High_Fast);
+	GPIO_Init(CAN, GPIO_Mode_Out_PP_High_Fast);
+	GPIO_Init(DOOR, GPIO_Mode_Out_PP_High_Fast);
+	// Настройка кнопок
+	GPIO_Init(B_B0, GPIO_Mode_In_FL_No_IT);
+	GPIO_Init(B_B1, GPIO_Mode_In_FL_No_IT);
+	GPIO_Init(B_B2, GPIO_Mode_In_FL_No_IT);
+	GPIO_Init(B_B3, GPIO_Mode_In_FL_No_IT);
+	GPIO_Init(B_UP, GPIO_Mode_In_FL_No_IT);
+	GPIO_Init(B_DOWN, GPIO_Mode_In_FL_No_IT);
+	GPIO_Init(L0_m, GPIO_Mode_In_FL_No_IT);
+	GPIO_Init(L1_m, GPIO_Mode_In_FL_No_IT);
+	GPIO_Init(L2_m, GPIO_Mode_In_FL_No_IT);
+	GPIO_Init(L3_m, GPIO_Mode_In_FL_No_IT);
+	GPIO_Init(S0_m, GPIO_Mode_In_FL_No_IT);
+	GPIO_Init(S1_m, GPIO_Mode_In_FL_No_IT);
+	GPIO_Init(S2_m, GPIO_Mode_In_FL_No_IT);
+	GPIO_Init(S3_m, GPIO_Mode_In_FL_No_IT);
+	GPIO_Init(WRK, GPIO_Mode_In_FL_No_IT);
+	GPIO_Init(STOP, GPIO_Mode_In_FL_No_IT);
 	
-	GPIO_Init(GPIOE, GPIO_Pin_7,GPIO_Mode_In_PU_No_IT);
-	GPIO_Init(GPIOC, GPIO_Pin_7,GPIO_Mode_Out_PP_Low_Fast);
+	//CLK_PeripheralClockConfig(CLK_Peripheral_I2C1, ENABLE);
 	I2C_Init_7bit(100000);
   while (1)
   {
-		//I2C_MasterSend(0x68, a, 3);
-		I2C_MasterSendPtrReceiveData(0x68,a, 1, &a[1], 2);
-		if (GPIO_ReadInputDataBit(GPIOE, GPIO_Pin_4))
+		switch(DevStat)
+		{
+			case initDev:
 			
-			{
-				GPIO_SetBits(GPIOC, GPIO_Pin_7);
-			}
-			else
-			{
-				GPIO_ResetBits(GPIOC, GPIO_Pin_7);
-			}
+			break;
+			case workDev:
+			break;
+		}
   
 	}
 #endif

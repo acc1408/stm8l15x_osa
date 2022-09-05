@@ -745,6 +745,36 @@ void TIM4_SelectMasterSlaveMode(FunctionalState NewState)
   }
 }
 
+#ifdef __OSA__ 
+void TIM4_TimerOSA(uint16_t us)
+{
+	uint32_t cpu,per;
+	uint8_t div=0, ;
+	CLK_PeripheralClockConfig(CLK_Peripheral_TIM4, ENABLE);
+	TIM4_ITConfig(TIM4_IT_Update, ENABLE);
+	cpu=CLK_GetClockFreq();
+	cpu/=64;
+	/*
+	while((per=cpu*us/((1<<div)*15625))>0xFF)
+	{
+		div++;
+	}
+	*/
+	do
+	{
+		per=cpu*us;
+		per/=15625;
+		per/=1<<div;
+		div++;
+	}	while(per>0xFF);
+	div--; 
+	per--;
+	TIM4_TimeBaseInit((TIM4_Prescaler_TypeDef) div, per);
+	TIM4_Cmd(ENABLE);
+}
+
+#endif
+
 /**
   * @}
   */ 
